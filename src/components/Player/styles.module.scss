@@ -4,7 +4,7 @@
   height: 100vh;
 
   background: var(--purple-500);
-  color: var(--white);
+  color: var(--font-player);
 
   display: flex;
   flex-direction: column;
@@ -133,5 +133,57 @@
         filter: brightness(0.95);
       }
     }
+  }
+}
+
+.currentEpisodeDetails {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .currentEpisodeDetails {
+    display: block;
+    color: var(--font-player);
+    text-decoration: none;
+    margin-bottom: 1rem;
+
+    display: inline-block;
+    white-space: nowrap;
+
+    overflow: hidden;
+    animation: banner 20s infinite linear;
+    animation-delay: 5s;
+  }
+
+  .playerContainer {
+    overflow: hidden;
+
+    padding: 1rem;
+    width: 100%;
+    height: 10rem;
+
+    header, .currentEpisode, .emptyPlayer {
+      display: none;
+    }
+  }
+
+  .playerContainer.hasEpisode {
+    height: 12rem;
+  }
+  
+}
+
+@keyframes banner {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(0);
+  }
+  85% {
+    transform: translateX(calc(-100% + 90vw));
+  }
+  100% {
+    transform: translateX(calc(-100% + 90vw));
   }
 }

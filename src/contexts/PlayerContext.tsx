@@ -6,6 +6,8 @@ type Episode = {
   thumbnail: string;
   duration: number;
   url: string;
+  publishedAt: string;
+  id: string;
 };
 
 type PlayerContextData = {

@@ -8,6 +8,7 @@ import 'rc-slider/assets/index.css';
 
 import styles from './styles.module.scss';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
+import Link from 'next/link';
 
 export function Player() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -65,7 +66,7 @@ export function Player() {
   const episode = episodeList[currentEpisodeIndex]
 
   return (
-    <div className={styles.playerContainer}>
+    <div className={`${styles.playerContainer} ${episode ? styles.hasEpisode : ''}`}>
       <header>
         <img src="/playing.svg" alt="Tocando agora" />
         <strong>Tocando agora</strong>
@@ -89,6 +90,16 @@ export function Player() {
       )}
 
       <footer className={!episode ? styles.empty : ''}>
+        {!!episode && (
+          <Link href={`/episodes/${episode?.id}`}>
+            <a className={styles.currentEpisodeDetails}>
+              {`${episode?.title} | ${episode?.members} | ${episode?.publishedAt}`}
+            </a>
+          </Link>
+        )}
+
+
+
         <div className={styles.progress}>
           <span>{convertDurationToTimeString(progress)}</span>
           <div className={styles.slider}>

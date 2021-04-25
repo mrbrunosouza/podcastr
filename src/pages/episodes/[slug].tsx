@@ -30,10 +30,16 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }: EpisodeProps) {
-  const { play } = usePlayer()
+  const {
+    play,
+    episodeList,
+    currentEpisodeIndex,
+  } = usePlayer()
+
+  const playingEpisode = episodeList[currentEpisodeIndex];
 
   return (
-    <div className={styles.episode}>
+    <div className={`${styles.episode} ${playingEpisode ? styles.hasPlayingEpisode : ''}`}>
       <Head>
         <title>{episode.title} | Podcastr</title>
       </Head>
